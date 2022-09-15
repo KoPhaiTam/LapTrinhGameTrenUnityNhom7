@@ -6,13 +6,22 @@ public class Di_Chuyen : MonoBehaviour
 {
     private Rigidbody2D rb;
     private float inputX = 0f; //Nhap tu ban phim
+    private SpriteRenderer sprite;
+    private Animator anim;
+
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float jumpForce = 14f;
     // Start is called before the first frame update
+
+    private enum MovementState {DungYen, Di, Nhay}
+
+
     private void Start()
     {
         Debug.Log("Start");
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -28,7 +37,35 @@ public class Di_Chuyen : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce); // giống như ví dụ di chuyển trái phải ở trên
         }
+        UpdateAnimation();
+    }
+    private void UpdateAnimation()
+    {
+        MovementState state;
+        if (inputX > 0f)
+        {
+            state = MovementState.Di;
+            sprite.flipX = false;
+        }
 
+        else if (inputX < 0f)
+        {
+            state = MovementState.Di;
+            sprite.flipX = true;
+        }
 
+        else
+        {
+            state = MovementState.DungYen;
+        }
+
+        if (rb.velocity.y > .1f)
+        {
+            state = MovementState.Nhay;
+        }
+
+        
+
+        anim.SetInteger("state", (int)state);
     }
 }
