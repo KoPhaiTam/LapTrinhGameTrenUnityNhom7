@@ -22,6 +22,7 @@ public class Di_Chuyen : MonoBehaviour
     private void Start()
     {
         Debug.Log("Start");
+        coll = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
