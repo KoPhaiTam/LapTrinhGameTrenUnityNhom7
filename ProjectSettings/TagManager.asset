@@ -47,6 +47,9 @@ TagManager:
   - name: Light
     uniqueID: 2577994709
     locked: 0
+  - name: Candles
+    uniqueID: 2786529653
+    locked: 0
   - name: TileMap
     uniqueID: 333651395
     locked: 0
