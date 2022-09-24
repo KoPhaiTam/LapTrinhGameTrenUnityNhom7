@@ -15,7 +15,8 @@ public class Di_Chuyen : MonoBehaviour
 
     [SerializeField] private LayerMask jumableGround; // Tạo những nơi chỉ nhảy được
 
-
+    [SerializeField] int playerHealth = 3;
+    [SerializeField] GameObject[] heart;
     private enum MovementState {DungYen, Di, Nhay, Roi} //enum dùng để liệt kê các biến ở trong
 
 
@@ -26,6 +27,7 @@ public class Di_Chuyen : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+        playerHealth = heart.Length;
     }
 
     // Update is called once per frame
@@ -85,5 +87,20 @@ public class Di_Chuyen : MonoBehaviour
         // tạo 1 cái layer trong unity để chỉ check khi ở mặt đất chứ ko va chạm với item
         // cái này dùng để check bên cái LayerMask bên unity khi ta cần check nhảy được nơi player vừa đáp xuống k
         // ví dụ bên cái platform di chuyển qua lại thì ta sẽ vẫn nhảy trên đấy được
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        playerHealth--; //Maus player sẽ tự trừ
+        if(playerHealth < 0) //Điều kiện chết
+        {
+            anim.SetBool("Dead", false); 
+        }
+        else
+        {
+            moveSpeed = 0f;
+            anim.SetBool("Dead", false);
+        }
+        Destroy(heart[playerHealth].gameObject);
     }
 }
