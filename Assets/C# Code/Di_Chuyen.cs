@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
 public class Di_Chuyen : MonoBehaviour
 {
@@ -10,8 +9,6 @@ public class Di_Chuyen : MonoBehaviour
     private SpriteRenderer sprite;
     private Animator anim;
     private BoxCollider2D coll;
-
-    PhotonView view; // tạo biến photon view bên object SpawnPlayers
 
     [SerializeField] private float moveSpeed = 7f; // Tốc độ di chuyển của nhân vật
     [SerializeField] private float jumpForce = 14f; // Lực nhảy của nhân vật
@@ -31,27 +28,21 @@ public class Di_Chuyen : MonoBehaviour
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         playerHealth = heart.Length;
-        view = GetComponent<PhotonView>(); // gán view cho component
-
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if(view.IsMine) // chỉ chạy code di chuyển khi nhân vật là của người chơi
+        inputX = Input.GetAxisRaw("Horizontal");// Horizontal nằm ở Input manager bao gồm 2 nút di chuyển trái, phái
+
+        rb.velocity = new Vector2(inputX * moveSpeed, rb.velocity.y); //nếu dirX nhập vào >0 thì đi sang phải 7f và ngược lại
+        //không nhập giá trị y là 0 vì nếu y ở frame trước là giá trị khác thì khi di chuyển sang trái hoặc phải thì sẽ y sẽ trở lại là 0
+
+
+        if (Input.GetButtonDown("Jump") && CheckGround())// Sử dụng GetKeyDown sẽ phải gọi đúng nút space Input.GetKeyDown("space")
         {
-            inputX = Input.GetAxisRaw("Horizontal");// Horizontal nằm ở Input manager bao gồm 2 nút di chuyển trái, phái
-
-            rb.velocity = new Vector2(inputX * moveSpeed, rb.velocity.y); //nếu dirX nhập vào >0 thì đi sang phải 7f và ngược lại
-            //không nhập giá trị y là 0 vì nếu y ở frame trước là giá trị khác thì khi di chuyển sang trái hoặc phải thì sẽ y sẽ trở lại là 0
-
-
-            if (Input.GetButtonDown("Jump") && CheckGround())// Sử dụng GetKeyDown sẽ phải gọi đúng nút space Input.GetKeyDown("space")
-            {
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce); // giống như ví dụ di chuyển trái phải ở trên
-            }
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce); // giống như ví dụ di chuyển trái phải ở trên
         }
-        
         
         UpdateAnimation();
     }
