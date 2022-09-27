@@ -11,7 +11,7 @@ public class Di_Chuyen : MonoBehaviour
     private Animator anim;
     private BoxCollider2D coll;
 
-    PhotonView view; // tạo biến photon view bên object SpawnPlayers
+    public PhotonView view; // tạo biến photon view bên object SpawnPlayers
 
     [SerializeField] private float moveSpeed = 7f; // Tốc độ di chuyển của nhân vật
     [SerializeField] private float jumpForce = 14f; // Lực nhảy của nhân vật
@@ -20,6 +20,7 @@ public class Di_Chuyen : MonoBehaviour
 
     [SerializeField] int playerHealth = 3;
     [SerializeField] GameObject[] heart;
+    public GameObject PlayerCamera;
     private enum MovementState {DungYen, Di, Nhay, Roi} //enum dùng để liệt kê các biến ở trong
 
 
@@ -38,6 +39,10 @@ public class Di_Chuyen : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if(view.IsMine)
+        {
+            PlayerCamera.SetActive(true); // nếu là nhân vật của mình mới bật camera
+        }
         if(view.IsMine) // chỉ chạy code di chuyển khi nhân vật là của người chơi
         {
             inputX = Input.GetAxisRaw("Horizontal");// Horizontal nằm ở Input manager bao gồm 2 nút di chuyển trái, phái

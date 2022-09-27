@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class CameraControl : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class CameraControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
+        transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
+        
     }
 }

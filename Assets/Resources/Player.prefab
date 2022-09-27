@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae28587c40e82dc4fa72cde0ef3bbb32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  view: {fileID: 0}
   moveSpeed: 7
   jumpForce: 5
   jumableGround:
