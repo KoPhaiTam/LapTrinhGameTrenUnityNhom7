@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Di_Chuyen : MonoBehaviour
 {
@@ -10,12 +11,15 @@ public class Di_Chuyen : MonoBehaviour
     private Animator anim;
     private BoxCollider2D coll;
 
+    PhotonView view; // tạo biến photon view bên object SpawnPlayers
+
     [SerializeField] private float moveSpeed = 7f; // Tốc độ di chuyển của nhân vật
     [SerializeField] private float jumpForce = 14f; // Lực nhảy của nhân vật
 
     [SerializeField] private LayerMask jumableGround; // Tạo những nơi chỉ nhảy được
 
-
+    [SerializeField] int playerHealth = 3;
+    [SerializeField] GameObject[] heart;
     private enum MovementState {DungYen, Di, Nhay, Roi} //enum dùng để liệt kê các biến ở trong
 
 
@@ -26,21 +30,28 @@ public class Di_Chuyen : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+        playerHealth = heart.Length;
+        view = GetComponent<PhotonView>(); // gán view cho component
+
     }
 
     // Update is called once per frame
     private void Update()
     {
-        inputX = Input.GetAxisRaw("Horizontal");// Horizontal nằm ở Input manager bao gồm 2 nút di chuyển trái, phái
-
-        rb.velocity = new Vector2(inputX * moveSpeed, rb.velocity.y); //nếu dirX nhập vào >0 thì đi sang phải 7f và ngược lại
-        //không nhập giá trị y là 0 vì nếu y ở frame trước là giá trị khác thì khi di chuyển sang trái hoặc phải thì sẽ y sẽ trở lại là 0
-
-
-        if (Input.GetButtonDown("Jump") && CheckGround())// Sử dụng GetKeyDown sẽ phải gọi đúng nút space Input.GetKeyDown("space")
+        if(view.IsMine) // chỉ chạy code di chuyển khi nhân vật là của người chơi
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce); // giống như ví dụ di chuyển trái phải ở trên
+            inputX = Input.GetAxisRaw("Horizontal");// Horizontal nằm ở Input manager bao gồm 2 nút di chuyển trái, phái
+
+            rb.velocity = new Vector2(inputX * moveSpeed, rb.velocity.y); //nếu dirX nhập vào >0 thì đi sang phải 7f và ngược lại
+            //không nhập giá trị y là 0 vì nếu y ở frame trước là giá trị khác thì khi di chuyển sang trái hoặc phải thì sẽ y sẽ trở lại là 0
+
+
+            if (Input.GetButtonDown("Jump") && CheckGround())// Sử dụng GetKeyDown sẽ phải gọi đúng nút space Input.GetKeyDown("space")
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce); // giống như ví dụ di chuyển trái phải ở trên
+            }
         }
+        
         
         UpdateAnimation();
     }
@@ -85,5 +96,20 @@ public class Di_Chuyen : MonoBehaviour
         // tạo 1 cái layer trong unity để chỉ check khi ở mặt đất chứ ko va chạm với item
         // cái này dùng để check bên cái LayerMask bên unity khi ta cần check nhảy được nơi player vừa đáp xuống k
         // ví dụ bên cái platform di chuyển qua lại thì ta sẽ vẫn nhảy trên đấy được
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        playerHealth--; //Maus player sẽ tự trừ
+        if(playerHealth < 0) //Điều kiện chết
+        {
+            anim.SetBool("Dead", false); 
+        }
+        else
+        {
+            moveSpeed = 0f;
+            anim.SetBool("Dead", false);
+        }
+        Destroy(heart[playerHealth].gameObject);
     }
 }
