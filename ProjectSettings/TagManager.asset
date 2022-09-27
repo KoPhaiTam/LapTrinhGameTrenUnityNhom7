@@ -41,18 +41,27 @@ TagManager:
   - name: Background
     uniqueID: 4161447059
     locked: 0
-  - name: Default
-    uniqueID: 0
+  - name: wall
+    uniqueID: 2815758827
     locked: 0
-  - name: Light
-    uniqueID: 2577994709
+  - name: cylindrical block
+    uniqueID: 3473952127
+    locked: 0
+  - name: Door
+    uniqueID: 2000170473
     locked: 0
   - name: Candles
     uniqueID: 2786529653
+    locked: 0
+  - name: Light
+    uniqueID: 2577994709
     locked: 0
   - name: TileMap
     uniqueID: 333651395
     locked: 0
   - name: Window
     uniqueID: 2288102153
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
