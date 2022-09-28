@@ -16,7 +16,7 @@ public class ConnectToServer : MonoBehaviourPunCallbacks //kế thừa đúng c�
     
     public override void OnConnectedToMaster() //kiểm tra có đang kết nối với máy chủ không
     {
-        PhotonNetwork.JoinLobby();
+        PhotonNetwork.JoinLobby(); //function
     }
 
     public override void OnJoinedLobby()

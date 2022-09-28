@@ -257,7 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   view: {fileID: 0}
   moveSpeed: 7
-  jumpForce: 5
+  jumpForce: 6.5
   jumableGround:
     serializedVersion: 2
     m_Bits: 72

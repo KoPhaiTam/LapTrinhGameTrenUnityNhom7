@@ -16,7 +16,7 @@ public class SpawnPlayers : MonoBehaviour
 
     public void Start()
     {
-        SceneCamera.SetActive(false);
+        SceneCamera.SetActive(false); //ko chạy camera
         Vector2 randomPosition = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY)); // tạo vị trí ngẫu nhiên
         PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity); // khởi tạo người chơi (tên prefab, vị trí ngẫu nhiên, rotation = không)
     }
