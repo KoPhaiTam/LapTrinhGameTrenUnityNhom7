@@ -11,6 +11,8 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 
    public void CreateRoom()// gọi func tạo phòng
    {
+        
+     
         PhotonNetwork.CreateRoom(createInput.text); // lưu ý phải kết nối với máy chủ trước rồi mới tạo hoặc join phòng
    }
 
@@ -21,6 +23,6 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        PhotonNetwork.LoadLevel("Map 1"); // chạy game khi tạo hoặc join phòng
+        //PhotonNetwork.LoadLevel("Map 1"); // chạy game khi tạo hoặc join phòng
     }
 }
