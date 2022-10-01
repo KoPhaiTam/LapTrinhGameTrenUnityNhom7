@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class Di_Chuyen : MonoBehaviour
+public class Di_Chuyen : MonoBehaviourPunCallbacks, IPunObservable
 {
     private Rigidbody2D rb;
     private float inputX = 0f; //Nhap tu ban phim
@@ -36,7 +36,7 @@ public class Di_Chuyen : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+    
     private void Update()
     {
         if(view.IsMine)
@@ -62,18 +62,19 @@ public class Di_Chuyen : MonoBehaviour
     }
     private void UpdateAnimation()// Hàm dùng để chuyển đổi animation
     {
+        
         MovementState state;
 
         if (inputX > 0f) // nếu nhập lớn 0 
         {
             state = MovementState.Di; //thực hiện animation đi
-            sprite.flipX = false; // lớn hơn 0 là di chuyển sang phải nên không xoay ngược nhân vật
+            view.RPC("FlipFalse", RpcTarget.AllBuffered);
         }
 
-        else if (inputX < 0f)
+        else if (inputX < 0f)// bé hơn 0 là di chuyển sang trái nên  xoay ngược nhân vật
         {
             state = MovementState.Di;
-            sprite.flipX = true; // bé hơn 0 là di chuyển sang trái nên  xoay ngược nhân vật
+            view.RPC("FlipTrue", RpcTarget.AllBuffered);
         }
 
         else
@@ -93,6 +94,18 @@ public class Di_Chuyen : MonoBehaviour
         
 
         anim.SetInteger("state", (int)state); // vì đang dùng enum nen giá trị trả về phải là số nguyên
+    }
+
+    [PunRPC]
+    private void FlipTrue()
+    {
+        sprite.flipX = true;// bé hơn 0 là di chuyển sang trái nên  xoay ngược nhân vật
+    }
+
+    [PunRPC]
+    private void FlipFalse()
+    {
+        sprite.flipX = false;// bé hơn 0 là di chuyển sang trái nên  xoay ngược nhân vật
     }
 
     private bool CheckGround() //hàm này dùng để kiểm tra những nơi mà player có thể nhảy được
@@ -116,5 +129,10 @@ public class Di_Chuyen : MonoBehaviour
             anim.SetBool("Dead", false);
         }
         Destroy(heart[playerHealth].gameObject);
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        throw new System.NotImplementedException();
     }
 }
