@@ -18,7 +18,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - post
   - 
   - 
   - 
@@ -42,6 +42,9 @@ TagManager:
   m_SortingLayers:
   - name: Background
     uniqueID: 4161447059
+    locked: 0
+  - name: NewBackground
+    uniqueID: 3936312047
     locked: 0
   - name: wall
     uniqueID: 2815758827

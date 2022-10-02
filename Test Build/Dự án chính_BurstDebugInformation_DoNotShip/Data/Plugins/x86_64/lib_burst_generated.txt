@@ -117,6 +117,7 @@ Library: lib_burst_generated
 --compilation-defines=PUN_2_0_OR_NEWER
 --compilation-defines=PUN_2_OR_NEWER
 --compilation-defines=PUN_2_19_OR_NEWER
+--compilation-defines=UNITY_POST_PROCESSING_STACK_V2
 --compilation-defines=PACKAGE_PHYSICS
 --compilation-defines=PACKAGE_PHYSICS2D
 --compilation-defines=PACKAGE_TILEMAP
@@ -132,6 +133,8 @@ Library: lib_burst_generated
 --compilation-defines=ENABLE_ANIMATION_BURST
 --compilation-defines=TIMELINE_FRAMEACCURATE
 --compilation-defines=ENABLE_SPRITESHAPE_BURST
+--compilation-defines=ENABLE_VR_MODULE
+--compilation-defines=ENABLE_XR_MODULE
 --linker-options=PdbAltPath="Dự án chính_Data/Plugins/x86_64"
 --generate-link-xml=Temp\burst.link.xml
 --output=E:\Game Project\Dự án chính\Dự án chính nhóm 7\LapTrinhGameTrenUnityNhom7\Temp\StagingArea\Data\Plugins\x86_64\lib_burst_generated
@@ -169,6 +172,7 @@ Library: lib_burst_generated
 --root-assembly=E:\Game Project\Dự án chính\Dự án chính nhóm 7\LapTrinhGameTrenUnityNhom7\Temp\StagingArea\Data\Managed\Unity.Services.Core.Networking.dll
 --root-assembly=E:\Game Project\Dự án chính\Dự án chính nhóm 7\LapTrinhGameTrenUnityNhom7\Temp\StagingArea\Data\Managed\Unity.InternalAPIEngineBridge.001.dll
 --root-assembly=E:\Game Project\Dự án chính\Dự án chính nhóm 7\LapTrinhGameTrenUnityNhom7\Temp\StagingArea\Data\Managed\Unity.Services.Core.Configuration.dll
+--root-assembly=E:\Game Project\Dự án chính\Dự án chính nhóm 7\LapTrinhGameTrenUnityNhom7\Temp\StagingArea\Data\Managed\Unity.Postprocessing.Runtime.dll
 --assembly-folder=E:\Game Project\Dự án chính\Dự án chính nhóm 7\LapTrinhGameTrenUnityNhom7\Temp\StagingArea\Data\Managed\
 --pdb-search-paths=Temp/ManagedSymbols/
 --method=Unity.Burst.BurstCompiler+BurstCompilerHelper, Unity.Burst, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::IsBurstEnabled()--8c2be93e18276203cbd918daa2748a10
@@ -293,6 +297,7 @@ Library: lib_burst_generated
 --compilation-defines=PUN_2_0_OR_NEWER
 --compilation-defines=PUN_2_OR_NEWER
 --compilation-defines=PUN_2_19_OR_NEWER
+--compilation-defines=UNITY_POST_PROCESSING_STACK_V2
 --compilation-defines=PACKAGE_PHYSICS
 --compilation-defines=PACKAGE_PHYSICS2D
 --compilation-defines=PACKAGE_TILEMAP
@@ -308,6 +313,8 @@ Library: lib_burst_generated
 --compilation-defines=ENABLE_ANIMATION_BURST
 --compilation-defines=TIMELINE_FRAMEACCURATE
 --compilation-defines=ENABLE_SPRITESHAPE_BURST
+--compilation-defines=ENABLE_VR_MODULE
+--compilation-defines=ENABLE_XR_MODULE
 --linker-options=PdbAltPath="Dự án chính_Data/Plugins/x86_64"
 --generate-link-xml=Temp\burst.link.xml
 --output=E:\Game Project\Dự án chính\Dự án chính nhóm 7\LapTrinhGameTrenUnityNhom7\Temp\StagingArea\Data\Plugins\x86_64\lib_burst_generated
@@ -345,6 +352,7 @@ Library: lib_burst_generated
 --root-assembly=E:\Game Project\Dự án chính\Dự án chính nhóm 7\LapTrinhGameTrenUnityNhom7\Temp\StagingArea\Data\Managed\Unity.Services.Core.Networking.dll
 --root-assembly=E:\Game Project\Dự án chính\Dự án chính nhóm 7\LapTrinhGameTrenUnityNhom7\Temp\StagingArea\Data\Managed\Unity.InternalAPIEngineBridge.001.dll
 --root-assembly=E:\Game Project\Dự án chính\Dự án chính nhóm 7\LapTrinhGameTrenUnityNhom7\Temp\StagingArea\Data\Managed\Unity.Services.Core.Configuration.dll
+--root-assembly=E:\Game Project\Dự án chính\Dự án chính nhóm 7\LapTrinhGameTrenUnityNhom7\Temp\StagingArea\Data\Managed\Unity.Postprocessing.Runtime.dll
 --assembly-folder=E:\Game Project\Dự án chính\Dự án chính nhóm 7\LapTrinhGameTrenUnityNhom7\Temp\StagingArea\Data\Managed\
 --pdb-search-paths=Temp/ManagedSymbols/
 --method=Unity.Burst.BurstCompiler+BurstCompilerHelper, Unity.Burst, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::IsBurstEnabled()--8c2be93e18276203cbd918daa2748a10
