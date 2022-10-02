@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 
 public class PlayerLife : MonoBehaviour
@@ -16,9 +18,11 @@ public class PlayerLife : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) 
     {
+        
         if(collision.gameObject.CompareTag("Trap")) // nếu collide với object có gameTag là Trap thì die
         {
             Die();
+            SceneManager.LoadScene("ContinueScene");
         }
     }
 
