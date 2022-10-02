@@ -7,11 +7,22 @@ using Photon.Realtime;
 
 public class RoomListing : MonoBehaviour
 {
-    [SerializeField] private Text text;
+    public Text roomName;
+    LobbyManager manager;
 
-    public void SetRoomInfo(RoomInfo roomInfo)
+    public void Start()
     {
-        text.text = roomInfo.Name;
+        manager = FindObjectOfType<LobbyManager>();
+    }
+
+    public void SetRoomName(string _roomName)
+    {
+        roomName.text = _roomName;
+    }
+
+    public void OnClickItem()
+    {
+        manager.JoinRoom(roomName.text);
     }
     
 }
