@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
@@ -32,21 +32,21 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     {
         if(roomInputField.text.Length >= 1)
         {
-            PhotonNetwork.CreateRoom(roomInputField.text, new RoomOptions(){MaxPlayers = 3});
+            PhotonNetwork.CreateRoom(roomInputField.text, new RoomOptions(){MaxPlayers = 3}); // tạo phòng với tối đa 3 người
         }
     }
 
     public override void OnJoinedRoom()
     {
-        lobbyPanel.SetActive(false);
+        lobbyPanel.SetActive(false); //kích hoạt Panel phòng
         roomPanel.SetActive(true);
-        roomName.text = "Room Name: " + PhotonNetwork.CurrentRoom.Name;
-        UpdatePlayerList();
+        roomName.text = "Room Name: " + PhotonNetwork.CurrentRoom.Name; //hiển thị tên phòng đã đặt
+        UpdatePlayerList(); //cập nhật danh sách người chơi trong phòng
     }
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        if(Time.time >= nextUpdateTime)
+        if(Time.time >= nextUpdateTime) //cập nhật phòng trên thời gian thực
         {
             UpdateRoomList(roomList);
             nextUpdateTime = Time.time + timeBetweenUpdates;
@@ -63,7 +63,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         }
         roomItemsList.Clear();
 
-        foreach(RoomInfo room in list)
+        foreach(RoomInfo room in list) // cập nhật phòng trên danh sách 
         {
             RoomListing newRoom = Instantiate(roomItemPrefab, contentObject);
             newRoom.SetRoomName(room.Name);
@@ -74,7 +74,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
 
     public void JoinRoom(string roomName)
     {
-        PhotonNetwork.JoinRoom(roomName); 
+        PhotonNetwork.JoinRoom(roomName); //tạo phòng
     }
 
     public void OnClickLeaveRoom()
@@ -101,16 +101,16 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         }
         playerItemsList.Clear();
 
-        if(PhotonNetwork.CurrentRoom == null)
+        if(PhotonNetwork.CurrentRoom == null) // xóa phòng nếu phòng không có ai
         {
             return;
         }
 
-        foreach(KeyValuePair<int, Player> player in PhotonNetwork.CurrentRoom.Players)
+        foreach(KeyValuePair<int, Player> player in PhotonNetwork.CurrentRoom.Players) //đếm số lượng người chơi
         {
-            PlayerItem newPlayerItem = Instantiate(playerItemPrefab, playerItemParent);
-            newPlayerItem.SetPlayerInfo(player.Value);
-            playerItemsList.Add(newPlayerItem);
+            PlayerItem newPlayerItem = Instantiate(playerItemPrefab, playerItemParent); //tạo prefab chứa đại diện nhân vật
+            newPlayerItem.SetPlayerInfo(player.Value); //chứa thông tin nhân vật
+            playerItemsList.Add(newPlayerItem); //thêm nhân vật
         }
     }
 
